@@ -10,6 +10,12 @@ class MockFlutterInstagramStoryPlatform
 
   @override
   Future<String?> getPlatformVersion() => Future.value('42');
+
+  @override
+  Future<String?> shareWithBackground() {
+    // TODO: implement shareWithBackground
+    throw UnimplementedError();
+  }
 }
 
 void main() {
@@ -20,10 +26,9 @@ void main() {
   });
 
   test('getPlatformVersion', () async {
-    FlutterInstagramStory flutterInstagramStoryPlugin = FlutterInstagramStory();
     MockFlutterInstagramStoryPlatform fakePlatform = MockFlutterInstagramStoryPlatform();
     FlutterInstagramStoryPlatform.instance = fakePlatform;
 
-    expect(await flutterInstagramStoryPlugin.getPlatformVersion(), '42');
+    expect(await FlutterInstagramStory.getPlatformVersion(), '42');
   });
 }

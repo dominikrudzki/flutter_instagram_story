@@ -26,4 +26,8 @@ abstract class FlutterInstagramStoryPlatform extends PlatformInterface {
   Future<String?> getPlatformVersion() {
     throw UnimplementedError('platformVersion() has not been implemented.');
   }
+
+  Future<String?> shareWithBackground() {
+    throw UnimplementedError('shareWithBackground() has not been implemented.');
+  }
 }

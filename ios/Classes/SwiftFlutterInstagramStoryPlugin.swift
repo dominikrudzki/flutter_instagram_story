@@ -9,6 +9,16 @@ public class SwiftFlutterInstagramStoryPlugin: NSObject, FlutterPlugin {
   }
 
   public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
-    result("iOS " + UIDevice.current.systemVersion)
+      switch call.method {
+      case "getPlatformVersion":
+          result("getPlatformVersion")
+          
+      case "shareWithBackground":
+          result("shareWithBackground")
+          
+      default:
+          result("Not implemented method")
+      }
+      
   }
 }

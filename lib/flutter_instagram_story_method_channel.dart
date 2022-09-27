@@ -7,11 +7,15 @@ import 'flutter_instagram_story_platform_interface.dart';
 class MethodChannelFlutterInstagramStory extends FlutterInstagramStoryPlatform {
   /// The method channel used to interact with the native platform.
   @visibleForTesting
-  final methodChannel = const MethodChannel('flutter_instagram_story');
+  static MethodChannel methodChannel = const MethodChannel('flutter_instagram_story');
 
   @override
   Future<String?> getPlatformVersion() async {
-    final version = await methodChannel.invokeMethod<String>('getPlatformVersion');
-    return version;
+    return await methodChannel.invokeMethod<String>('getPlatformVersion');
+  }
+
+  @override
+  Future<String?> shareWithBackground() async {
+    return await methodChannel.invokeMethod<String>('shareWithBackground');
   }
 }
