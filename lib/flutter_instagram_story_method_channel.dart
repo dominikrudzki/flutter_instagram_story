@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 
@@ -10,12 +12,25 @@ class MethodChannelFlutterInstagramStory extends FlutterInstagramStoryPlatform {
   static MethodChannel methodChannel = const MethodChannel('flutter_instagram_story');
 
   @override
-  Future<String?> getPlatformVersion() async {
-    return await methodChannel.invokeMethod<String>('getPlatformVersion');
+  Future<String?> shareWithBackground({
+    required String path,
+  }) async {
+    File file = File(path);
+    Uint8List bytes = file.readAsBytesSync();
+    Uint8List stickerData = bytes.buffer.asUint8List();
+
+    return shareWithBackgroundFromImageBuffer(stickerData: stickerData);
   }
 
   @override
-  Future<String?> shareWithBackground() async {
-    return await methodChannel.invokeMethod<String>('shareWithBackground');
+  Future<String?> shareWithBackgroundFromImageBuffer({
+    required Uint8List stickerData,
+  }) async {
+    return await methodChannel.invokeMethod<String>(
+      'shareWithBackground',
+      <String, dynamic>{
+        'stickerImage': stickerData,
+      },
+    );
   }
 }

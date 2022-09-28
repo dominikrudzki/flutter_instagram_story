@@ -1,6 +1,6 @@
 name: flutter_instagram_story
 description: Sharing photos to Instagram story.
-version: 0.0.1
+version: 0.0.2
 homepage: https://github.com/dominikrudzki/flutter_instagram_story
 
 environment:
